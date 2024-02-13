@@ -1,32 +1,14 @@
-import { pipe } from "@carbonteq/fp/pipe";
-
-
-// Example usage:
-function addTwo(x: number): number {
-  return x + 2;
-}
-
-function multiplyByThree(x: number): number {
-  return x * 3;
-}
-
-function subtractTen(x: number): number {
-  return x - 10;
-}
-  
+import { pipe } from "@carbonteq/fp/pipe"; 
 
 describe('pipe', () => {
   it('should construct pipe', () => {
+    const len = (s: string): number => s.length;
+    const double = (n: number): number => n * 2;
+    const square = (n: number): number => n ** 2;
+    
+    const res = pipe("hi", double, len, square);
 
-    const res = pipe(
-      23,
-      addTwo,
-      multiplyByThree,
-      subtractTen     
-    )
-    console.log(res); // Output: ((5 + 2) * 3) - 10 = 11
-
-    expect(res).toBe(65);
+    expect(res).toBe(16);
   });
 
 });
